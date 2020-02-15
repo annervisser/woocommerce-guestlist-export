@@ -28,7 +28,7 @@ class GuestListCsvDownload
         $csv_headers = ['Order#', 'Aantal', 'Naam', 'E-mail', 'Activiteit'];
         $attributes = array_keys($product->get_attributes('edit'));
         $csv_headers = array_merge($csv_headers, $attributes);
-        $filename = 'gastenlijst.csv';
+        $filename = 'gastenlijst' . '-' . $product->get_slug() . '.csv';
 
         header('Content-Type: application/csv');
         header('Content-Disposition: attachment; filename="' . $filename . '";');
