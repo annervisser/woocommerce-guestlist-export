@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 // POST is handled by hook in GuestListCsvDownload.php
 ?>
 
-<h1> Guestlist Export</h1>
+<h1>Gastenlijst exporteren</h1>
 <form method="post">
     <div>
         <label>Product:
