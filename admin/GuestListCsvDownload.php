@@ -2,8 +2,8 @@
 
 class GuestListCsvDownload
 {
-    public const PAGE_NAME = 'guestlist-export-woocommerce';
-    public const POST_NAME = 'guestlist-csv';
+    const PAGE_NAME = 'guestlist-export-woocommerce';
+    const POST_NAME = 'guestlist-csv';
 
     /** @noinspection PhpUnused Is used in hook at bottom of file */
     static function hook_plugins_loaded()
