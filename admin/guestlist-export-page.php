@@ -23,6 +23,7 @@ if (!defined('ABSPATH')) {
 
     <br>
 
+    <input type="hidden" value="<?php wp_create_nonce(GuestListCsvDownload::POST_NAME) ?>">
     <input name="<?php echo GuestListCsvDownload::POST_NAME; ?>" type="submit" class="button-primary"
            value="Gastenlijst ophalen">
 </form>

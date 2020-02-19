@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Guest list export for WooCommerce
  * Description: Export a csv file of all orders of a certain product
- * Version: 1.1
+ * Version: 1.2
  * Author: Anner Visser
  */
 

@@ -9,18 +9,27 @@ class GuestListCsvDownload
     static function hook_plugins_loaded()
     {
         global $pagenow;
-        if ($pagenow == 'admin.php'
-            && current_user_can('export') &&
-            $_GET['page'] === self::PAGE_NAME
-            && isset($_POST[self::POST_NAME])) {
+        if ($pagenow == 'admin.php' &&
+            current_user_can('export') &&
+            $_GET['page'] === self::PAGE_NAME &&
+            isset($_POST[self::POST_NAME]) &&
+            isset($_GET['nonce']) &&
+            wp_verify_nonce($_GET['nonce'], self::POST_NAME)
+        ) {
             self::output_csv_file();
             exit();
         }
     }
 
-    static function output_csv_file()
+    private static function output_csv_file()
     {
-        $product_id = $_POST['product'];
+        $product_id = intval($_POST['product']);
+
+        if (empty($product_id)) {
+            return;
+        }
+
+
         /** @var WC_Product $product */
         $product = wc_get_product($product_id);
         $order_ids = self::retrieve_orders_ids_from_a_product_id($product_id);
@@ -61,7 +70,7 @@ class GuestListCsvDownload
         }
     }
 
-    static function retrieve_orders_ids_from_a_product_id($product_id)
+    private static function retrieve_orders_ids_from_a_product_id($product_id)
     {
         global $wpdb;
 
