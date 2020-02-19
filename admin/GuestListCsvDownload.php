@@ -13,8 +13,8 @@ class GuestListCsvDownload
             current_user_can('export') &&
             $_GET['page'] === self::PAGE_NAME &&
             isset($_POST[self::POST_NAME]) &&
-            isset($_GET['nonce']) &&
-            wp_verify_nonce($_GET['nonce'], self::POST_NAME)
+            isset($_POST['nonce']) &&
+            wp_verify_nonce($_POST['nonce'], self::POST_NAME)
         ) {
             self::output_csv_file();
             exit();
@@ -56,13 +56,13 @@ class GuestListCsvDownload
 
                 if ($item->get_product_id() == $product_id) {
                     $row = [];
-                    $row['order_id'] = $order->get_id();
-                    $row['item_quantity'] = $item->get_quantity();
-                    $row['customer_name'] = $order->get_formatted_billing_full_name();
-                    $row['customer_email'] = $order->get_billing_email();
-                    $row['item_name'] = $item->get_name();
+                    $row['order_id'] = esc_html($order->get_id());
+                    $row['item_quantity'] = esc_html($item->get_quantity());
+                    $row['customer_name'] = esc_html($order->get_formatted_billing_full_name());
+                    $row['customer_email'] = esc_html($order->get_billing_email());
+                    $row['item_name'] = esc_html($item->get_name());
                     foreach ($attributes as $attribute) {
-                        $row[$attribute] = $item->get_meta($attribute);
+                        $row[$attribute] = esc_html($item->get_meta($attribute));
                     }
                     fputcsv($f, $row, ',');
                 }
