@@ -1,4 +1,4 @@
-=== WooCommerce Guestlist Export ===
+=== Guest list export for WooCommerce ===
 Contributors: annervisser
 Tags: woocommerce, export
 Requires at least: 4.6
